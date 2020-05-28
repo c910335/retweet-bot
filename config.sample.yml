@@ -1,0 +1,6 @@
+rules:
+  - name: screen_name_1
+    text: regex_1_to_match
+  - name: screen_name_2
+    text: regex_2_to_match
+

@@ -1,0 +1,22 @@
+name: retweet_bot
+version: 0.1.0
+
+authors:
+  - Tatsiujin Chin <c910335@gmail.com>
+
+targets:
+  retweet_bot:
+    main: src/retweet_bot.cr
+
+crystal: 0.34.0
+
+license: MIT
+
+dependencies:
+  twitter-crystal:
+    github: c910335/twitter-crystal
+    branch: master
+
+  dotenv:
+    github: gdotdesign/cr-dotenv
+    version: ~> 0.7.0

@@ -1,0 +1,10 @@
+version: 1.0
+shards:
+  dotenv:
+    github: gdotdesign/cr-dotenv
+    version: 0.7.0
+
+  twitter-crystal:
+    github: c910335/twitter-crystal
+    commit: 882254a8fef47d68a305516711137b19c8ab25ce
+
