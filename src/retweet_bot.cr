@@ -52,12 +52,22 @@ class RetweetBot
   def start
     log "Start tracking tweets from #{names.map { |n| '@' + n }.join(", ")}."
 
-    stream_client.filter({"follow" => follow_ids}) do |tweet|
-      if tweet.is_a?(Twitter::Tweet) && !tweet.retweeted_status && (name = tweet.user.try &.screen_name)
-        if (regex = rules[name]?) && tweet.text =~ regex
-          api_client.retweet(tweet)
-          log "Retweeted", "@#{name}: #{tweet.text}"
+    loop do
+      begin
+        stream_client.filter({"follow" => follow_ids}) do |tweet|
+          if tweet.is_a?(Twitter::Tweet) &&
+             !tweet.retweeted_status &&
+             (name = tweet.user.try &.screen_name) &&
+             (regex = rules[name]?) &&
+             tweet.text =~ regex
+            api_client.retweet(tweet)
+            log "Retweeted", "@#{name}: #{tweet.text}"
+          end
         end
+      rescue e
+        log "Error", e.message
+        log "Will reconnect in 10 seconds."
+        sleep 10
       end
     end
   end
