@@ -51,6 +51,7 @@ class RetweetBot
 
   def start
     log "Start tracking tweets from #{names.map { |n| '@' + n }.join(", ")}."
+    log "Retweeting rules: #{rules}"
 
     loop do
       begin
