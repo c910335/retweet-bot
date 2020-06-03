@@ -69,6 +69,8 @@ class RetweetBot
         log "Error", e.message
         log "Will reconnect in 10 seconds."
         sleep 10
+        @stream_client = nil
+        @api_client = nil
       end
     end
   end
